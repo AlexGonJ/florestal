@@ -74,7 +74,7 @@ export default function Home() {
           <p className="text-on-surface-variant font-body max-w-xl mx-auto uppercase tracking-widest text-sm">Nossas Soluções Técnicas</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
-          <div 
+          <div
             className="md:col-span-8 bg-surface-container-high rounded-[2rem] overflow-hidden group relative transition-transform duration-500 hover:-translate-y-2 cursor-none"
             onClick={() => setSelectedCard('geo')}
             onMouseEnter={() => setIsHoveringCard(true)}
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div 
+          <div
             className="md:col-span-4 bg-surface-container-low rounded-[2rem] p-10 flex flex-col border border-outline-variant/10 group hover:border-primary/30 transition-all cursor-none"
             onClick={() => setSelectedCard('gestao')}
             onMouseEnter={() => setIsHoveringCard(true)}
@@ -110,7 +110,7 @@ export default function Home() {
               <span className="material-symbols-outlined text-primary">arrow_forward</span>
             </div>
           </div>
-          <div 
+          <div
             className="md:col-span-4 bg-surface-container-low rounded-[2rem] p-10 flex flex-col border border-outline-variant/10 group hover:border-primary/30 transition-all cursor-none"
             onClick={() => setSelectedCard('auditoria')}
             onMouseEnter={() => setIsHoveringCard(true)}
@@ -126,7 +126,7 @@ export default function Home() {
               <span className="material-symbols-outlined text-primary">arrow_forward</span>
             </div>
           </div>
-          <div 
+          <div
             className="md:col-span-8 bg-surface-container-high rounded-[2rem] overflow-hidden group relative transition-transform duration-500 hover:-translate-y-2 cursor-none"
             onClick={() => setSelectedCard('reflorestamento')}
             onMouseEnter={() => setIsHoveringCard(true)}
@@ -173,7 +173,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="flex justify-between mb-3 items-end">
-                  <span className="font-label uppercase tracking-widest text-sm text-on-surface">Biodiversity Index</span>
+                  <span className="font-label uppercase tracking-widest text-sm text-on-surface">Índice de Biodiversidade</span>
                   <span className="text-primary font-bold text-2xl">0.94</span>
                 </div>
                 <div className="w-full h-2 bg-emerald-950 rounded-full overflow-hidden">
@@ -182,7 +182,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="flex justify-between mb-3 items-end">
-                  <span className="font-label uppercase tracking-widest text-sm text-on-surface">Carbon Neutrality Projects</span>
+                  <span className="font-label uppercase tracking-widest text-sm text-on-surface">Projetos de Neutralidade de Carbono</span>
                   <span className="text-primary font-bold text-2xl">124 active</span>
                 </div>
                 <div className="w-full h-2 bg-emerald-950 rounded-full overflow-hidden">
@@ -207,7 +207,7 @@ export default function Home() {
         <div className="bg-emerald-950 rounded-[3rem] p-10 md:p-20 relative overflow-hidden flex flex-col md:flex-row gap-16 items-center shadow-2xl">
           <div className="absolute -top-32 -right-32 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
           <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
-          
+
           <div className="w-full md:w-1/2 relative z-10">
             <h2 className="text-4xl md:text-6xl font-headline text-emerald-50 mb-6 font-medium">Inicie seu Projeto Ambiental.</h2>
             <p className="text-emerald-100/70 font-body mb-8 text-lg">
@@ -216,7 +216,7 @@ export default function Home() {
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-4 text-emerald-100/90">
                 <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
-                <span className="font-body text-sm tracking-wide">Av. Paulista, 1000 - São Paulo, SP</span>
+                <span className="font-body text-sm tracking-wide">Rua dos , 1000 - Belo Horizonte, MG</span>
               </div>
               <div className="flex items-center gap-4 text-emerald-100/90">
                 <span className="material-symbols-outlined text-primary text-2xl">mail</span>
@@ -224,20 +224,20 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className="w-full md:w-1/2 relative z-10">
             <form className="flex flex-col gap-5 bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2rem] border border-white/10" onSubmit={(e) => e.preventDefault()}>
               <div className="flex flex-col gap-2">
                 <label className="text-emerald-50 font-label text-xs uppercase tracking-widest pl-2">Nome Completo</label>
-                <input type="text" placeholder="Eng. João Silva" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
+                <input type="text" placeholder="Seu Nome" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-emerald-50 font-label text-xs uppercase tracking-widest pl-2">E-mail Corporativo</label>
-                <input type="email" placeholder="joao.silva@empresa.com" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
+                <input type="email" placeholder="seuemail@empresa.com" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-emerald-50 font-label text-xs uppercase tracking-widest pl-2">Descreva sua Demanda</label>
-                <textarea rows={3} placeholder="Preciso de auditoria para..." className="bg-white/5 border border-white/10 rounded-[1.5rem] px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm resize-none"></textarea>
+                <textarea rows={3} placeholder="Preciso de consultoria para..." className="bg-white/5 border border-white/10 rounded-[1.5rem] px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm resize-none"></textarea>
               </div>
               <button type="submit" className="mt-4 px-6 py-4 rounded-full bg-primary text-emerald-950 font-bold hover:scale-[1.02] transition-transform text-sm uppercase tracking-widest shadow-[0_10px_20px_rgba(16,185,129,0.2)]">
                 Enviar Mensagem
@@ -251,7 +251,7 @@ export default function Home() {
       <footer className="w-full py-16 px-8 flex flex-col md:flex-row justify-between items-center gap-10 border-t border-emerald-900/10 bg-emerald-950">
         <div className="flex flex-col items-center md:items-start gap-3">
           <div className="text-emerald-400 font-headline text-3xl italic tracking-tighter">FLOR ENG</div>
-          <p className="font-body text-xs uppercase tracking-[0.2em] text-emerald-700/60 font-bold italic">© 2024 Flor Eng. Built for the Living Canopy.</p>
+          <p className="font-body text-xs uppercase tracking-[0.2em] text-emerald-700/60 font-bold italic">© 2024 Flor Eng. Engenharia para a Vida.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-10">
           <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">ISO 14001 Certified</a>
@@ -261,12 +261,12 @@ export default function Home() {
         </div>
       </footer>
       {/* Contextual Action Cursor */}
-      <div 
+      <div
         ref={cursorRef}
         className="fixed top-0 left-0 pointer-events-none z-[75]"
         style={{ transform: 'translate3d(-100px, -100px, 0)' }}
       >
-        <div 
+        <div
           className={`w-[110px] h-[110px] -ml-[55px] -mt-[55px] bg-emerald-300 text-emerald-950 font-label rounded-full flex items-center justify-center text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_10px_40px_rgba(110,231,183,0.4)] transition-all duration-300 ease-out ${isHoveringCard ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}
         >
           Saber Mais
@@ -275,31 +275,31 @@ export default function Home() {
 
       {/* Overlay Expansion */}
       {selectedCard && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-8 transition-all duration-300" 
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-8 transition-all duration-300"
           onClick={() => setSelectedCard(null)}
         >
-          <div 
+          <div
             className="w-[95vw] md:w-[90vw] xl:max-w-[1400px] h-[90vh] md:h-[80vh] max-h-[900px] bg-white rounded-[2rem] overflow-hidden shadow-2xl relative flex flex-col md:flex-row transform transition-all"
             onClick={(e) => e.stopPropagation()}
           >
-            <button 
+            <button
               onClick={() => setSelectedCard(null)}
               className="absolute top-6 right-6 z-20 bg-white/80 hover:bg-white text-emerald-950 rounded-full w-12 h-12 flex items-center justify-center transition-all shadow-md hover:scale-105 backdrop-blur-md"
             >
               <span className="material-symbols-outlined">close</span>
             </button>
-            
+
             {cardsInfo[selectedCard].image && (
               <div className="w-full md:w-[60%] h-80 md:h-full relative shrink-0">
-                <img 
-                  src={cardsInfo[selectedCard].image} 
+                <img
+                  src={cardsInfo[selectedCard].image}
                   alt={cardsInfo[selectedCard].title}
                   className="w-full h-full object-cover"
                 />
               </div>
             )}
-            
+
             <div className={`p-8 md:p-14 flex flex-col justify-center overflow-y-auto ${cardsInfo[selectedCard].image ? 'w-full md:w-[40%]' : 'w-full'}`}>
               <h2 className="text-4xl md:text-5xl font-headline text-emerald-950 mb-8">{cardsInfo[selectedCard].title}</h2>
               <div className="space-y-6">
@@ -318,7 +318,7 @@ export default function Home() {
                   </div>
                 )}
               </div>
-              <button 
+              <button
                 onClick={() => {
                   setSelectedCard(null);
                   setTimeout(() => {

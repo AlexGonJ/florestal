@@ -155,10 +155,10 @@ export default function CinematicVideo() {
               O Futuro
             </span>
             <h3 className="text-4xl md:text-5xl font-headline text-emerald-950 font-bold leading-tight mb-6">
-              The Lungs of the Earth
+              Os pulmões do planeta
             </h3>
             <p className="text-neutral-600 font-body text-lg leading-relaxed mb-8">
-              Um ecossistema resiliente, auto-suficiente e totalmente neutro em carbono, protegido pela tecnologia SYLVA ENG.
+              Um ecossistema resiliente, auto-suficiente e totalmente neutro em carbono, protegido pela tecnologia Flor ENG.
             </p>
             <div>
               <button className="px-8 py-3 rounded-full bg-emerald-950 text-emerald-400 font-bold hover:bg-emerald-900 transition-all text-sm uppercase tracking-widest pointer-events-auto">
