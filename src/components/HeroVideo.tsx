@@ -11,98 +11,80 @@ if (typeof window !== "undefined") {
 
 export default function HeroVideo() {
   const containerRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const forestRef = useRef<HTMLImageElement>(null);
+  const faceRef = useRef<HTMLImageElement>(null);
 
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const video = videoRef.current;
-      if (!video) return;
-
       const setupTrigger = () => {
-        const duration = video.duration || 1;
-
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=2200", // Shorter total scroll
+            end: "+=800", // Shorter total scroll
             scrub: 1,
             pin: true,
           },
         });
 
-        // 1. Scrub do background video ends at duration 7 out of 10
-        tl.to(video, {
-          currentTime: duration,
-          ease: "none",
-          duration: 7,
-        }, 0);
-
-        // 2. Some com a indicação inicial de scroll instantaneamente
-        tl.to(scrollIndicatorRef.current, {
-          opacity: 0,
-          y: -20,
-          duration: 1,
-        }, 0);
-
-        // 3. A Navbar Global aparece junto com o card (tempo 5)
+        // 1. A Navbar Global aparece junto com o card
         const globalNav = document.querySelector("#global-nav");
         if (globalNav) {
           tl.to(globalNav, {
             opacity: 1,
-            duration: 2,
+            duration: 1,
             ease: "power2.out"
-          }, 5);
+          }, 0);
         }
 
-        // 4. O Mega Card "Glassmorphism" entra no fim do video scrub
+        // 2. O Mega Card "Glassmorphism" aparece ao fazer scroll
         tl.fromTo(heroContentRef.current,
-          { opacity: 0, scale: 1.05 },
-          { opacity: 1, scale: 1, duration: 2, ease: "power2.out" },
-          5 // Finish fully revealing by 7
+          { opacity: 0, scale: 1.05, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 2, ease: "power2.out" },
+          0
         );
 
-        // 5. Tela parada no final por mais um curto scroll
-        tl.to({}, { duration: 3 });
+        // 3. Tela parada no final
+        tl.to({}, { duration: 0.5 });
       };
 
-      if (video.readyState >= 1) {
-        setupTrigger();
-      } else {
-        video.onloadedmetadata = () => setupTrigger();
-      }
+      setupTrigger();
     },
     { scope: containerRef }
   );
 
   return (
-    <section ref={containerRef} className="relative w-screen h-screen overflow-hidden flex items-center justify-center bg-black">
-      {/* Background Video Expandido */}
-      <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          src="/floresta_scrub.mp4"
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover scale-[1.02]"
+    <section ref={containerRef} className="relative w-screen h-screen overflow-hidden flex items-center justify-center bg-emerald-950">
+      {/* Background Integrado (Floresta Esquerda + Rosto Direita) */}
+      <div className="absolute inset-0 z-0 bg-emerald-950">
+        {/* Imagem Base da Esquerda (Amazon Greenpeace) */}
+        <img
+          ref={forestRef}
+          src="https://www.greenpeace.org/static/planet4-brasil-stateless/2024/05/5b07ea98-floresta-amazonica.jpg"
+          alt="Floresta Amazônica"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Camada de controle de luz suave por cima do video */}
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/40 via-transparent to-black/20 pointer-events-none" />
-      </div>
 
-      {/* Indicador Inicial (Scroll to review/explore) */}
-      <div ref={scrollIndicatorRef} className="absolute z-20 flex flex-col items-center justify-center gap-4 opacity-100 pointer-events-none">
-        <span className="font-headline text-5xl md:text-7xl text-emerald-950 font-bold tracking-tight drop-shadow-lg text-glow">
-          Role para descobrir
-        </span>
-        <div className="w-[2px] h-20 bg-gradient-to-b from-emerald-950 to-transparent animate-pulse drop-shadow-md" />
-        <span className="material-symbols-outlined text-emerald-950 text-6xl animate-bounce drop-shadow-lg">
-          south
-        </span>
+        {/* Imagem de Rosto (Focalizada a direita) */}
+        <div 
+          className="absolute top-0 right-0 bottom-0 w-full md:w-[60vw] pointer-events-none"
+          style={{
+            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+          }}
+        >
+          <img
+            ref={faceRef}
+            src="/rosto.png"
+            alt="Rosto"
+            className="w-full h-full object-cover object-[80%_center] scale-100"
+          />
+        </div>
+
+        {/* Camada de controle de luz suave por cima para unificar */}
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-950/10 to-black/30 pointer-events-none" />
       </div>
 
       {/* Frame Gigante estilo "Wandertrip Print" */}
