@@ -32,9 +32,33 @@ const cardsInfo: Record<string, CardData> = {
   }
 };
 
+const faqs = [
+  {
+    question: "O que é manejo florestal sustentável?",
+    answer: "É a administração da floresta para a obtenção de benefícios econômicos, sociais e ambientais, respeitando-se os mecanismos de sustentação do ecossistema.",
+    icon: "park"
+  },
+  {
+    question: "Como é feita a auditoria de carbono?",
+    answer: "Utilizamos satélites e sensores em campo para medir com precisão a biomassa e converter em créditos de carbono certificados sob padrões ISO internacionais.",
+    icon: "co2"
+  },
+  {
+    question: "Qual a importância de espécies nativas no reflorestamento?",
+    answer: "As espécies nativas garantem a restauração da biodiversidade local e proporcionam maior resiliência climática em comparação com monoculturas.",
+    icon: "eco"
+  },
+  {
+    question: "Quanto tempo leva a implementação de um projeto?",
+    answer: "A fase de mapeamento inicial leva de 4 a 8 semanas. O cronograma completo de execução depende da escala e complexidade da área florestal.",
+    icon: "schedule"
+  }
+];
+
 export default function Home() {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [isHoveringCard, setIsHoveringCard] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -232,7 +256,7 @@ export default function Home() {
                 <input type="text" placeholder="Seu Nome" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-emerald-50 font-label text-xs uppercase tracking-widest pl-2">E-mail Corporativo</label>
+                <label className="text-emerald-50 font-label text-xs uppercase tracking-widest pl-2">E-mail</label>
                 <input type="email" placeholder="seuemail@empresa.com" className="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-emerald-50 placeholder:text-emerald-100/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all font-body text-sm" />
               </div>
               <div className="flex flex-col gap-2">
@@ -247,6 +271,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-32 px-8 max-w-7xl mx-auto">
+        <div className="bg-emerald-950 rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-2xl border border-primary/20" style={{ boxShadow: '0 0 60px rgba(145, 247, 142, 0.08), 0 25px 50px rgba(0,0,0,0.4)' }}>
+          {/* Glow orbs */}
+          <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/15 rounded-full blur-[120px] pointer-events-none"></div>
+          <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-primary/15 rounded-full blur-[120px] pointer-events-none"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+          {/* Header */}
+          <div className="mb-14 text-center relative z-10">
+            <h2 className="text-4xl md:text-6xl font-headline mb-5 font-medium" style={{ color: '#D4A853', textShadow: '0 0 30px rgba(212, 168, 83, 0.2)' }}>Perguntas Frequentes</h2>
+            <p className="font-body max-w-xl mx-auto uppercase tracking-widest text-sm text-emerald-100/50">Esclareça suas dúvidas técnicas</p>
+          </div>
+
+          {/* Accordion items */}
+          <div className="space-y-4 relative z-10">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`rounded-[2rem] transition-all duration-500 ease-out overflow-hidden ${
+                  openFaq === index
+                    ? 'bg-white shadow-xl shadow-black/30'
+                    : 'bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/30 hover:bg-white/[0.07]'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full px-8 py-7 flex items-center gap-5 text-left group"
+                >
+                  <span className={`material-symbols-outlined text-3xl shrink-0 transition-colors duration-300 ${openFaq === index ? 'text-emerald-600' : 'text-primary'}`}>
+                    {faq.icon}
+                  </span>
+                  <span className={`flex-1 text-lg md:text-xl font-headline transition-colors duration-300 ${
+                    openFaq === index
+                      ? 'text-emerald-950'
+                      : 'text-emerald-50 group-hover:text-primary'
+                  }`}>
+                    {faq.question}
+                  </span>
+                  <span className={`material-symbols-outlined text-2xl shrink-0 transition-all duration-500 ${
+                    openFaq === index
+                      ? 'rotate-180 text-emerald-600'
+                      : 'text-emerald-100/30 group-hover:text-primary'
+                  }`}>
+                    expand_more
+                  </span>
+                </button>
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    openFaq === index ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-8 pb-8 pt-0 pl-[4.75rem]">
+                    <p className="text-neutral-600 font-body leading-relaxed text-base">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer Area */}
       <footer className="w-full py-16 px-8 flex flex-col md:flex-row justify-between items-center gap-10 border-t border-emerald-900/10 bg-emerald-950">
         <div className="flex flex-col items-center md:items-start gap-3">
@@ -254,10 +342,10 @@ export default function Home() {
           <p className="font-body text-xs uppercase tracking-[0.2em] text-emerald-700/60 font-bold italic">© 2024 Flor Eng. Engenharia para a Vida.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-10">
-          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">ISO 14001 Certified</a>
-          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">Forest Stewardship Council</a>
-          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">PEFC International</a>
-          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">Privacy Policy</a>
+          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">ISO 14001 Certificado</a>
+          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">Conselho de Gestão Florestal</a>
+          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">PEFC Internacional</a>
+          <a className="text-emerald-800 hover:text-primary transition-all font-body text-xs font-bold uppercase tracking-widest" href="#">Política de Privacidade</a>
         </div>
       </footer>
       {/* Contextual Action Cursor */}

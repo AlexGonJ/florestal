@@ -4,15 +4,17 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, useGSAP);
 }
 
 export default function HeroVideo() {
   const containerRef = useRef<HTMLElement>(null);
   const forestRef = useRef<HTMLImageElement>(null);
   const faceRef = useRef<HTMLImageElement>(null);
+  const welcomeRef = useRef<HTMLDivElement>(null);
 
   const heroContentRef = useRef<HTMLDivElement>(null);
 
@@ -51,12 +53,67 @@ export default function HeroVideo() {
       };
 
       setupTrigger();
+
+      // Welcome "Bem-vindo" intro sequence
+      if (welcomeRef.current) {
+        const welcomeTl = gsap.timeline();
+
+        // Fade in the welcome text with a subtle scale
+        welcomeTl.fromTo(welcomeRef.current,
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }
+        );
+
+        // Hold for 1.5 seconds
+        welcomeTl.to({}, { duration: 1.5 });
+
+        // Fade out — scroll only starts AFTER this completes
+        welcomeTl.to(welcomeRef.current,
+          {
+            opacity: 0,
+            scale: 1.05,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+              if (welcomeRef.current) {
+                welcomeRef.current.style.display = "none";
+              }
+              // Slow, smooth auto-scroll to 50% of the hero pinned range
+              gsap.to(window, {
+                scrollTo: { y: 400, autoKill: true },
+                duration: 2,
+                ease: "power2.inOut"
+              });
+            }
+          }
+        );
+      }
     },
     { scope: containerRef }
   );
 
   return (
     <section ref={containerRef} className="relative w-screen h-screen overflow-hidden flex items-center justify-center bg-emerald-950">
+      {/* Welcome Overlay */}
+      <div
+        ref={welcomeRef}
+        className="absolute inset-0 z-[60] flex items-center justify-center pointer-events-none opacity-0"
+      >
+        {/* Dark radial vignette behind text */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 80%)' }}
+        />
+        <h2
+          className="relative text-[7rem] md:text-[10rem] lg:text-[12rem] font-light text-primary leading-none tracking-tighter"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            textShadow: '0 0 80px rgba(145,247,142,0.5), 0 0 160px rgba(145,247,142,0.2), 0 6px 30px rgba(0,0,0,0.8)',
+          }}
+        >
+          Bem-vindo
+        </h2>
+      </div>
       {/* Background Integrado (Floresta Esquerda + Rosto Direita) */}
       <div className="absolute inset-0 z-0 bg-emerald-950">
         {/* Imagem Base da Esquerda (Amazon Greenpeace) */}
